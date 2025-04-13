@@ -1,0 +1,83 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Clock</title>
+  
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000000;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .clock {
+      font-size: 60px;
+      color: #4113da;
+      background-color: #fd04ed;
+      padding: 30px 60px;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(234, 211, 4, 0.808);
+    }
+
+    .date {
+      font-size: 28px;
+      margin-top: 20px;
+      color: #06ed63;
+    }
+    .heading{
+      font-size: 48px;
+      color:aqua;
+      margin-bottom: 30px;
+      animation: slideIn 2s ease-in-out infinite alternate;
+    }
+    @keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+}
+  </style>
+</head>
+<body>
+  <h1 class="heading">Live Feed</h1>
+
+  <div class="clock" id="clock">00:00:00</div>
+  <div class="date" id="date">00/00/0000</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      let hours = now.getHours().toString().padStart(2, '0');
+      let minutes = now.getMinutes().toString().padStart(2, '0');
+      let seconds = now.getSeconds().toString().padStart(2, '0');
+      const timeString = `${hours}:${minutes}:${seconds}`;
+
+      let day = String(now.getDate()).padStart(2, '0');
+      let month = String(now.getMonth() + 1).padStart(2, '0');
+      let year = now.getFullYear();
+      const date = `${day}/${month}/${year}`;
+
+      document.getElementById('clock').innerText = timeString;
+      document.getElementById('date').innerText = date;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>
+
+
